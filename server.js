@@ -454,7 +454,7 @@ const resolvers = {
 };
 
 async function startServer() {
-    const server = new ApolloServer({ typeDefs, resolvers, cache: new InMemoryLRUCache() });
+    const server = new ApolloServer({ typeDefs, resolvers, cache: new InMemoryLRUCache(), introspection: true });
     await server.start();
 
     const app = express();

@@ -1,5 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server-express');
 const express = require('express');
+const { InMemoryLRUCache } = require('@apollo/utils.keyvaluecache');
 
 const categoriesData = {
     data: [
@@ -453,7 +454,7 @@ const resolvers = {
 };
 
 async function startServer() {
-    const server = new ApolloServer({ typeDefs, resolvers });
+    const server = new ApolloServer({ typeDefs, resolvers, cache: new InMemoryLRUCache() });
     await server.start();
 
     const app = express();
